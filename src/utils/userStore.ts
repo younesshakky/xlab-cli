@@ -1,13 +1,18 @@
 import * as fs from "fs-extra";
 import * as path from "path";
 
+type conf = {
+  accessToken: string;
+  projectID: string;
+};
+
 const getConfigPath = (dir: string) => {
   return path.join(dir, "config.json");
 };
 
 export const getConfig = async (dir: string) => {
   const configPath = getConfigPath(dir);
-  let config = {};
+  let config: conf | object = {};
 
   try {
     const conf = await fs.readJSON(configPath);
