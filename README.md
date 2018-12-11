@@ -28,8 +28,29 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
+* [`gitlab-cli configure`](#gitlab-cli-configure)
 * [`gitlab-cli hello [FILE]`](#gitlab-cli-hello-file)
 * [`gitlab-cli help [COMMAND]`](#gitlab-cli-help-command)
+* [`gitlab-cli mr:delete ID`](#gitlab-cli-mrdelete-id)
+* [`gitlab-cli mr:open`](#gitlab-cli-mropen)
+* [`gitlab-cli mr:state ID STATE`](#gitlab-cli-mrstate-id-state)
+
+## `gitlab-cli configure`
+
+Configure gitlab-cli
+
+```
+USAGE
+  $ gitlab-cli configure
+
+OPTIONS
+  -h, --help                       show CLI help
+  -i, --project-id=project-id
+  -t, --access-token=access-token
+  --prompt
+```
+
+_See code: [src\commands\configure.ts](https://github.com/younesshakky/gitlab-cli/blob/v0.0.0/src\commands\configure.ts)_
 
 ## `gitlab-cli hello [FILE]`
 
@@ -67,4 +88,51 @@ OPTIONS
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.1.4/src\commands\help.ts)_
+
+## `gitlab-cli mr:delete ID`
+
+```
+USAGE
+  $ gitlab-cli mr:delete ID
+
+OPTIONS
+  -h, --help  show CLI help
+```
+
+_See code: [src\commands\mr\delete.ts](https://github.com/younesshakky/gitlab-cli/blob/v0.0.0/src\commands\mr\delete.ts)_
+
+## `gitlab-cli mr:open`
+
+Open new merge request
+
+```
+USAGE
+  $ gitlab-cli mr:open
+
+OPTIONS
+  -a, --assignee=assignee        Assignee
+  -d, --description=description  Description
+  -h, --help                     show CLI help
+  -h, --title=title              MR title. defaults to the last commit message if none is provided
+  -s, --source=source            Source branch. defaults to your current branch if none is provided
+  -t, --target=target            (required) [default: DEV] Target branch. defaults to DEV if none is provided
+```
+
+_See code: [src\commands\mr\open.ts](https://github.com/younesshakky/gitlab-cli/blob/v0.0.0/src\commands\mr\open.ts)_
+
+## `gitlab-cli mr:state ID STATE`
+
+```
+USAGE
+  $ gitlab-cli mr:state ID STATE
+
+ARGUMENTS
+  ID     MR id
+  STATE  State of MR close/reopen
+
+OPTIONS
+  -h, --help  show CLI help
+```
+
+_See code: [src\commands\mr\state.ts](https://github.com/younesshakky/gitlab-cli/blob/v0.0.0/src\commands\mr\state.ts)_
 <!-- commandsstop -->

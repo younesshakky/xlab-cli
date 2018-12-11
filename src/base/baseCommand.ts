@@ -4,6 +4,7 @@ import { cli } from "cli-ux";
 
 import http from "../services/http";
 import { getConfig } from "../utils/userStore";
+import parseError from "../utils/parseError";
 
 // @ts-ignore
 export default class BaseCommand extends Command {
@@ -20,6 +21,7 @@ export default class BaseCommand extends Command {
       config.projectID
     }${URL}?private_token=${config.accessToken}`;
 
+    this.log(URLWithToken);
     cli.action.start("working...");
 
     return new Promise((resolve, reject) => {
@@ -30,7 +32,8 @@ export default class BaseCommand extends Command {
         })
         .catch((err: AxiosError) => {
           cli.action.stop();
-          reject(err);
+          this.log(parseError(err));
+          // reject(err);
         });
     });
   }

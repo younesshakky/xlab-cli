@@ -1,20 +1,10 @@
-import Command, { flags } from "@oclif/command";
+import { flags } from "@oclif/command";
 
-import { getConfig } from "../../utils/userStore";
-import GitProxy from "../../services/gitProxy";
-import { formatMRQuery } from "../../utils/formatters";
-import http from "../../services/http";
-import { cli } from "cli-ux";
 import BaseCommand from "../../base/baseCommand";
-
-// type queryOpts = {
-//   id: number | string;
-//   title: string;
-//   source: string;
-//   target: string;
-//   assignee?: string;
-//   description?: string;
-// };
+import GitProxy from "../../services/gitProxy";
+import { formatQuery } from "../../utils/formatters";
+import { MRqueryPattern } from "../../constants/patterns";
+import { cli } from "cli-ux";
 
 export default class OpenMR extends BaseCommand {
   static description = "Open new merge request";
@@ -66,12 +56,12 @@ export default class OpenMR extends BaseCommand {
       ...rest
     } = flags;
 
-    const initialQuery = { title, source, ...rest };
+    const query = { title, source, ...rest };
 
     this.makeRequest(
       "post",
       `/merge_requests`,
-      formatMRQuery(initialQuery)
+      formatQuery(MRqueryPattern, query)
     ).then((response: any) => {
       this.log(`
           Merge request created successfully

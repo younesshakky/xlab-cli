@@ -1,14 +1,13 @@
 import Command, { flags } from "@oclif/command";
-import { args } from "@oclif/parser";
+
+import BaseCommand from "../../base/baseCommand";
 import http from "../../services/http";
 import { getConfig } from "../../utils/userStore";
 
-export default class StateMR extends Command {
+export default class StateMR extends BaseCommand {
   static flags = {
     help: flags.help({ char: "h" })
   };
-
-  query: any = null;
 
   static args = [
     {
@@ -20,33 +19,23 @@ export default class StateMR extends Command {
     {
       name: "state",
       required: true,
-      description: "state of mr open/close"
+      description: "State of MR close/reopen"
     }
   ];
-
-  makeRequest(MRID: number, state: string): any {
-    const { projectID, accessToken } = this.query;
-    http
-      .post(
-        `/projects/${projectID}/merge_requests/${MRID}?private_token=${accessToken}`,
-        { state }
-      )
-      .then(res => this.showFollowUp(res.data));
-  }
-
-  showFollowUp(response: any): any {
-    this.log(`Changed merge request state to "${response.state}"`);
-  }
-
-  async init() {
-    const config = await getConfig(this.config.configDir);
-
-    this.query = { ...config };
-  }
 
   async run() {
     const { args } = this.parse(StateMR);
 
-    this.makeRequest(args.id, args.state);
+    this.makeRequest("put", `/merge_requests/${args.id}`, {
+      state_event: args.state
+    })
+      .then((res: any) => {
+        this.log(`
+        Changed merge request state to "${res.state}"
+      `);
+      })
+      .catch(err => {
+        this.log(err.response.data);
+      });
   }
 }

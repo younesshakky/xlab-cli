@@ -13,8 +13,8 @@ export default class Configure extends Command {
   static flags = {
     help: flags.help({ char: "h" }),
     prompt: flags.boolean({ default: false }),
-    [ACCESS_TOKEN]: flags.string({ char: "t" }),
-    [PROJECT_ID]: flags.integer({ char: "i" })
+    [ACCESS_TOKEN]: flags.string({ char: "t", name: "Access Token" }),
+    [PROJECT_ID]: flags.integer({ char: "i", name: "Project ID" })
   };
 
   private async getPrompts(): Promise<any> {

@@ -1,14 +1,10 @@
-import Command, { flags } from "@oclif/command";
-import { args } from "@oclif/parser";
-import http from "../../services/http";
-import { getConfig } from "../../utils/userStore";
+import { flags } from "@oclif/command";
+import BaseCommand from "../../base/baseCommand";
 
-export default class DeleteMR extends Command {
+export default class DeleteMR extends BaseCommand {
   static flags = {
     help: flags.help({ char: "h" })
   };
-
-  query: any = null;
 
   static args = [
     {
@@ -18,28 +14,13 @@ export default class DeleteMR extends Command {
     }
   ];
 
-  makeRequest(MRID: any): any {
-    const { projectID, accessToken } = this.query;
-    http
-      .delete(
-        `/projects/${projectID}/merge_requests/${MRID}?private_token=${accessToken}`
-      )
-      .then(res => this.showFollowUp(res.data));
-  }
-
-  showFollowUp(response: any): any {
-    this.log(`Merge request deleted successfully`);
-  }
-
-  async init() {
-    const config = await getConfig(this.config.configDir);
-
-    this.query = { ...config };
-  }
-
   async run() {
     const { args } = this.parse(DeleteMR);
 
-    this.makeRequest(args.id);
+    this.makeRequest("delete", `/merge_requests/${args.id}`, null).then(
+      (res: any) => {
+        this.log(`Merge request ${args.id} deleted successfully`);
+      }
+    );
   }
 }
