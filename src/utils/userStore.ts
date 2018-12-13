@@ -18,13 +18,12 @@ const getCurrentProjectConfig = (): conf | null => {
   }
 };
 
-export const getConfig = async (dir: string) => {
+export const getConfig = async (dir: string): Promise<conf | object> => {
   const fromProjectConfig: conf | null = getCurrentProjectConfig();
 
   if (fromProjectConfig) {
     return Promise.resolve(fromProjectConfig);
   }
-
   const configPath = getConfigPath(dir);
   let config: conf | object = {};
 
@@ -41,9 +40,31 @@ export const getConfig = async (dir: string) => {
   return config;
 };
 
+export const getConfigSync = (dir: string): conf => {
+  const fromProjectConfig: conf | null = getCurrentProjectConfig();
+
+  if (fromProjectConfig) {
+    return fromProjectConfig;
+  }
+
+  const configPath = getConfigPath(dir);
+  let config: conf | object = {};
+
+  try {
+    const conf = fs.readJSONSync(configPath);
+    config = conf;
+  } catch (e) {
+    // create file if it's not found
+    if (e.code == "ENOENT") {
+      fs.writeFileSync(configPath, JSON.stringify({}));
+    }
+  }
+
+  return config;
+};
+
 export const setConfig = async (dir: string, config: object) => {
   const configPath = getConfigPath(dir);
-  console.log("hey fuck face");
   const lastConfig = await getConfig(dir);
   const newConfig = { ...lastConfig, ...config };
 

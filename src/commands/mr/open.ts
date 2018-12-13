@@ -5,13 +5,16 @@ import GitProxy from "../../services/gitProxy";
 import { formatQuery } from "../../utils/formatters";
 import { MRqueryPattern } from "../../constants/patterns";
 import { cli } from "cli-ux";
+import http from "../../utils/http";
+import { IFlag } from "@oclif/parser/lib/flags";
+import GitlabApi from "../../services/gitlab-api";
 
 export default class OpenMR extends BaseCommand {
-  static description = "Open new merge request";
-  static flags = {
+  static description: string = "Open new merge request";
+  static flags: any = {
     help: flags.help({ char: "h" }),
     title: flags.string({
-      char: "h",
+      char: "c",
       description:
         "MR title. defaults to the last commit message if none is provided"
     }),
@@ -27,9 +30,15 @@ export default class OpenMR extends BaseCommand {
       required: true
     }),
 
-    assignee: flags.integer({
+    assignee: flags.string({
       char: "a",
       description: "Assignee"
+    }),
+
+    assign: flags.boolean({
+      char: "w",
+      description: "list assignees",
+      default: false
     }),
 
     description: flags.string({
@@ -39,6 +48,7 @@ export default class OpenMR extends BaseCommand {
   };
 
   gitProxy: GitProxy = new GitProxy();
+  gitlabApi: GitlabApi = new GitlabApi();
 
   showFollowUp(response: any): any {
     this.log(`
@@ -53,10 +63,26 @@ export default class OpenMR extends BaseCommand {
     const {
       title = await this.gitProxy.lastCommit(),
       source = await this.gitProxy.getCurrentBranch(),
+      assignee: assigneeQuery,
       ...rest
     } = flags;
 
-    const query = { title, source, ...rest };
+    let assigneeId = null;
+
+    if (assigneeQuery) {
+      cli.action.start("searching for assignee");
+
+      await this.gitlabApi.getAssignee(assigneeQuery).then(assignee => {
+        if (assignee) {
+          assigneeId = assignee.id;
+        } else {
+          this.error("No such assignee");
+          this.exit();
+        }
+      });
+    }
+
+    const query = { title, source, assignee: assigneeId, ...rest };
 
     this.makeRequest(
       "post",

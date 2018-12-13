@@ -2,8 +2,8 @@ import execute from "../utils/execute";
 import { LAST_COMMIT, CURRENT_BRANCH } from "../constants/git";
 
 interface IGitProxy {
-  getCurrentBranch?: () => {};
-  lastCommit?: () => {};
+  getCurrentBranch: () => {};
+  lastCommit: () => {};
 }
 
 export default class GitProxy implements IGitProxy {
