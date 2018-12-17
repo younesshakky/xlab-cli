@@ -1,8 +1,5 @@
-import Command, { flags } from "@oclif/command";
-
+import { flags } from "@oclif/command";
 import BaseCommand from "../../base/baseCommand";
-import http from "../../services/http";
-import { getConfig } from "../../utils/userStore";
 
 export default class StateMR extends BaseCommand {
   static flags = {

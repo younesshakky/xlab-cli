@@ -6,7 +6,7 @@ type conf = {
   projectID: string;
 };
 
-const getConfigPath = (dir: string) => {
+const getConfigPath = (dir: string = "") => {
   return path.join(dir, "config.json");
 };
 
@@ -25,7 +25,7 @@ export const getConfig = async (dir: string): Promise<conf | object> => {
     return Promise.resolve(fromProjectConfig);
   }
   const configPath = getConfigPath(dir);
-  let config: conf | object = {};
+  let config: conf | any = {};
 
   try {
     const conf = await fs.readJSON(configPath);
@@ -48,7 +48,7 @@ export const getConfigSync = (dir: string): conf => {
   }
 
   const configPath = getConfigPath(dir);
-  let config: conf | object = {};
+  let config: conf | any = {};
 
   try {
     const conf = fs.readJSONSync(configPath);

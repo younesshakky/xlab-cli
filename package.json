@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "author": "younesshakky @younesshakky",
   "bin": {
-    "gitlab-cli": "./bin/run"
+    "gitlab-cli": "./bin/gitlab-cli"
   },
   "bugs": "https://github.com/younesshakky/gitlab-cli/issues",
   "dependencies": {
@@ -59,9 +59,10 @@
     "postpack": "rimraf oclif.manifest.json",
     "posttest": "tslint -p test -t stylish",
     "prepack": "rimraf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
+    "pack": "ocliff-dev pack:deb",
     "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\"",
     "version": "oclif-dev readme && git add README.md",
-    "package": "pkg"
+    "package": "pkg ."
   },
   "types": "lib/index.d.ts",
   "pkg.scripts": "./lib/**/*.js"
