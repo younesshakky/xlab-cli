@@ -1,17 +1,19 @@
 {
-  "name": "gitlab-cli",
-  "version": "0.0.0",
+  "name": "xlab-cli",
+  "version": "1.0.0-alpha",
   "author": "younesshakky @younesshakky",
   "bin": {
-    "gitlab-cli": "./bin/gitlab-cli"
+    "xlab-cli": "./bin/xlab-cli"
   },
-  "bugs": "https://github.com/younesshakky/gitlab-cli/issues",
+  "bugs": "https://github.com/younesshakky/xlab-cli/issues",
   "dependencies": {
     "@oclif/command": "^1",
     "@oclif/config": "^1",
+    "@oclif/plugin-autocomplete": "^0.1.0",
     "@oclif/plugin-help": "^2",
     "@types/fs-extra": "^5.0.4",
     "axios": "^0.18.0",
+    "joi": "^14.3.1",
     "pkg": "^4.3.5",
     "query-string": "^6.2.0",
     "tslib": "^1"
@@ -32,6 +34,16 @@
     "tslint": "^5",
     "typescript": "^3.0"
   },
+  "bundledDependencies": [
+    "axios",
+    "cli-ux",
+    "@oclif/command",
+    "@oclif/config",
+    "@oclif/plugin-help",
+    "@oclif/errors",
+    "query-string",
+    "joi"
+  ],
   "engines": {
     "node": ">=8.0.0"
   },
@@ -41,7 +53,7 @@
     "/npm-shrinkwrap.json",
     "/oclif.manifest.json"
   ],
-  "homepage": "https://github.com/younesshakky/gitlab-cli",
+  "homepage": "https://github.com/younesshakky/xlab-cli",
   "keywords": [
     "oclif"
   ],
@@ -49,20 +61,21 @@
   "main": "lib/index.js",
   "oclif": {
     "commands": "./lib/commands",
-    "bin": "gitlab-cli",
+    "bin": "xlab-cli",
     "plugins": [
-      "@oclif/plugin-help"
+      "@oclif/plugin-help",
+      "@oclif/plugin-autocomplete"
     ]
   },
-  "repository": "younesshakky/gitlab-cli",
+  "repository": "younesshakky/xlab-cli",
   "scripts": {
-    "postpack": "rimraf oclif.manifest.json",
+    "postpack": "rimraf -rf oclif.manifest.json",
     "posttest": "tslint -p test -t stylish",
-    "prepack": "rimraf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
-    "pack": "ocliff-dev pack:deb",
+    "prepack": "rimraf -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme && npm run setup:local",
+    "pack": "./node_modules/.bin/oclif-dev pack",
     "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\"",
     "version": "oclif-dev readme && git add README.md",
-    "package": "pkg ."
+    "start": "./bin/xlab-cli"
   },
   "types": "lib/index.d.ts",
   "pkg.scripts": "./lib/**/*.js"

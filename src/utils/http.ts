@@ -1,17 +1,14 @@
 import axios, { AxiosInstance } from "axios";
-import { Config } from "@oclif/config";
-import { getConfigSync } from "./userStore";
+import { getConfigSync } from "./config";
 import parseError from "./parseError";
-import { cli, ux, ActionBase } from "cli-ux";
-import { rejects } from "assert";
+import { cli } from "cli-ux";
 
-const config = new Config({ root: "" });
 
 const instace: AxiosInstance = axios.create({
   baseURL: "https://gitlab.com/api/v4",
   headers: {
     "Content-Type": "application/json",
-    "PRIVATE-TOKEN": getConfigSync(config.configDir).accessToken
+    "PRIVATE-TOKEN": getConfigSync().accessToken
   }
 });
 

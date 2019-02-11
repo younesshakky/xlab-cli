@@ -1,15 +1,12 @@
 import http from "../utils/http";
 import { Config } from "@oclif/config";
-import { getConfigSync } from "../utils/userStore";
+import { getConfigSync } from "../utils/config";
 
-export default class GitlabApi {
-  constructor() {}
-
-  private config: Config = new Config({ root: "" });
+class GitlabApi {
 
   public getAssignees = (query: string): Promise<any[]> => {
-    const { projectID } = getConfigSync(this.config.configDir);
-    // accessToken
+    const { projectID } = getConfigSync();
+
     return new Promise((resolve, reject) => {
       http
         .get(`/projects/${projectID}/members/all/?query=${query}`)
@@ -26,3 +23,5 @@ export default class GitlabApi {
     });
   };
 }
+
+export default new GitlabApi();

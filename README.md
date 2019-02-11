@@ -15,11 +15,11 @@ gitlab-cli
 # Usage
 <!-- usage -->
 ```sh-session
-$ npm install -g gitlab-cli
+$ npm install -g gitlab-mein-cli
 $ gitlab-cli COMMAND
 running command...
 $ gitlab-cli (-v|--version|version)
-gitlab-cli/0.0.0 linux-x64 node-v10.14.2
+gitlab-mein-cli/1.0.0 linux-x64 node-v10.14.2
 $ gitlab-cli --help [COMMAND]
 USAGE
   $ gitlab-cli COMMAND
@@ -50,7 +50,7 @@ OPTIONS
   --prompt
 ```
 
-_See code: [src/commands/configure.ts](https://github.com/younesshakky/gitlab-cli/blob/v0.0.0/src/commands/configure.ts)_
+_See code: [src/commands/configure.ts](https://github.com/younesshakky/gitlab-cli/blob/v1.0.0/src/commands/configure.ts)_
 
 ## `gitlab-cli help [COMMAND]`
 
@@ -79,7 +79,7 @@ OPTIONS
   -h, --help  show CLI help
 ```
 
-_See code: [src/commands/mr/delete.ts](https://github.com/younesshakky/gitlab-cli/blob/v0.0.0/src/commands/mr/delete.ts)_
+_See code: [src/commands/mr/delete.ts](https://github.com/younesshakky/gitlab-cli/blob/v1.0.0/src/commands/mr/delete.ts)_
 
 ## `gitlab-cli mr:list`
 
@@ -94,7 +94,7 @@ OPTIONS
   -s, --state=state  [default: open]
 ```
 
-_See code: [src/commands/mr/list.ts](https://github.com/younesshakky/gitlab-cli/blob/v0.0.0/src/commands/mr/list.ts)_
+_See code: [src/commands/mr/list.ts](https://github.com/younesshakky/gitlab-cli/blob/v1.0.0/src/commands/mr/list.ts)_
 
 ## `gitlab-cli mr:open`
 
@@ -114,7 +114,7 @@ OPTIONS
   -w, --assign                   list assignees
 ```
 
-_See code: [src/commands/mr/open.ts](https://github.com/younesshakky/gitlab-cli/blob/v0.0.0/src/commands/mr/open.ts)_
+_See code: [src/commands/mr/open.ts](https://github.com/younesshakky/gitlab-cli/blob/v1.0.0/src/commands/mr/open.ts)_
 
 ## `gitlab-cli mr:state ID STATE`
 
@@ -130,5 +130,5 @@ OPTIONS
   -h, --help  show CLI help
 ```
 
-_See code: [src/commands/mr/state.ts](https://github.com/younesshakky/gitlab-cli/blob/v0.0.0/src/commands/mr/state.ts)_
+_See code: [src/commands/mr/state.ts](https://github.com/younesshakky/gitlab-cli/blob/v1.0.0/src/commands/mr/state.ts)_
 <!-- commandsstop -->

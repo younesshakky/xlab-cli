@@ -6,27 +6,22 @@ interface IGitProxy {
   lastCommit: () => {};
 }
 
-export default class GitProxy implements IGitProxy {
+class GitProxy implements IGitProxy {
   async getCurrentBranch() {
-    let branch = null;
-
     try {
-      branch = await execute(CURRENT_BRANCH);
+      return await execute(CURRENT_BRANCH);
     } catch (e) {
-      branch = null; // it's soo wtfker operation
+      return null; // it's soo wtfker operation
     }
-    return branch;
   }
 
   async lastCommit() {
-    let commit = null;
-
     try {
-      commit = await execute(LAST_COMMIT);
+      return await execute(LAST_COMMIT);
     } catch (e) {
-      commit = null;
+      return null;
     }
-
-    return commit;
   }
 }
+
+export default new GitProxy();

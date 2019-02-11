@@ -3,15 +3,14 @@ import { AxiosResponse, AxiosError } from "axios";
 import { cli } from "cli-ux";
 
 import http from "../utils/http";
-import { getConfig, getConfigSync } from "../utils/userStore";
-import parseError from "../utils/parseError";
+import { getConfigSync } from "../utils/config";
 
 // @ts-ignore
 export default class BaseCommand extends Command {
   entity = "projects"; // project by default
 
   public getConfig() {
-    return getConfigSync(this.config.configDir);
+    return getConfigSync();
   }
 
   public async makeRequest(method: string, URL: string, body?: any) {

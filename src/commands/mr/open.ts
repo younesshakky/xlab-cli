@@ -1,13 +1,10 @@
 import { flags } from "@oclif/command";
-
-import BaseCommand from "../../base/baseCommand";
-import GitProxy from "../../services/gitProxy";
+import { cli } from "cli-ux";
 import { formatQuery } from "../../utils/formatters";
 import { MRqueryPattern } from "../../constants/patterns";
-import { cli } from "cli-ux";
-import http from "../../utils/http";
-import { IFlag } from "@oclif/parser/lib/flags";
-import GitlabApi from "../../services/gitlab-api";
+import BaseCommand from "../../base/baseCommand";
+import gitProxy from "../../services/gitProxy";
+import gitlabApi from "../../services/gitlab-api";
 
 export default class OpenMR extends BaseCommand {
   static description: string = "Open new merge request";
@@ -47,9 +44,6 @@ export default class OpenMR extends BaseCommand {
     })
   };
 
-  gitProxy: GitProxy = new GitProxy();
-  gitlabApi: GitlabApi = new GitlabApi();
-
   showFollowUp(response: any): any {
     this.log(`
       Merge request created successfully
@@ -61,8 +55,8 @@ export default class OpenMR extends BaseCommand {
     const { flags } = this.parse(OpenMR);
 
     const {
-      title = await this.gitProxy.lastCommit(),
-      source = await this.gitProxy.getCurrentBranch(),
+      title = await gitProxy.lastCommit(),
+      source = await gitProxy.getCurrentBranch(),
       assignee: assigneeQuery,
       ...rest
     } = flags;
@@ -72,7 +66,7 @@ export default class OpenMR extends BaseCommand {
     if (assigneeQuery) {
       cli.action.start("searching for assignee");
 
-      await this.gitlabApi.getAssignee(assigneeQuery).then(assignee => {
+      await gitlabApi.getAssignee(assigneeQuery).then((assignee: any) => {
         if (assignee) {
           assigneeId = assignee.id;
         } else {
