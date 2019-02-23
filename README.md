@@ -1,6 +1,7 @@
 xlab-cli
 ==========
 
+Just a tiny command line interface for gitlab API
 
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
