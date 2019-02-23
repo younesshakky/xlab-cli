@@ -14,15 +14,20 @@ export default class BaseCommand extends Command {
   }
 
   public async makeRequest(method: string, URL: string, body?: any) {
+    const config = this.getConfig();
+    if (!config.projectID && !config.accessToken) {
+      this.error("Cannot make request without project id or an access token")
+      this.exit()
+    }
+
     // @ts-ignore
     const request = http[method];
-    const config = this.getConfig();
-    const URLWithToken = `/${this.entity}/${config.projectID}${URL}`;
+    const requestURL = `/${this.entity}/${config.projectID}${URL}`;
 
     cli.action.start("working...");
 
     return new Promise((resolve, reject) => {
-      request(URLWithToken, body)
+      request(requestURL, body)
         .then((res: AxiosResponse) => {
           cli.action.stop();
           resolve(res.data);
