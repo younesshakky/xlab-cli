@@ -1,6 +1,6 @@
 {
   "name": "xlab-cli",
-  "version": "1.0.0-alpha",
+  "version": "1.0.1-alpha",
   "author": "younesshakky @younesshakky",
   "bin": {
     "xlab-cli": "./bin/xlab-cli"
