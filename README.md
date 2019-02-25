@@ -20,7 +20,7 @@ $ npm install -g xlab-cli
 $ xlab-cli COMMAND
 running command...
 $ xlab-cli (-v|--version|version)
-xlab-cli/1.0.0-alpha linux-x64 node-v10.14.2
+xlab-cli/1.0.1-alpha linux-x64 node-v10.14.2
 $ xlab-cli --help [COMMAND]
 USAGE
   $ xlab-cli COMMAND
@@ -73,7 +73,7 @@ OPTIONS
   --prompt
 ```
 
-_See code: [src/commands/configure.ts](https://github.com/younesshakky/xlab-cli/blob/v1.0.0-alpha/src/commands/configure.ts)_
+_See code: [src/commands/configure.ts](https://github.com/younesshakky/xlab-cli/blob/v1.0.1-alpha/src/commands/configure.ts)_
 
 ## `xlab-cli help [COMMAND]`
 
@@ -102,7 +102,7 @@ OPTIONS
   -h, --help  show CLI help
 ```
 
-_See code: [src/commands/mr/delete.ts](https://github.com/younesshakky/xlab-cli/blob/v1.0.0-alpha/src/commands/mr/delete.ts)_
+_See code: [src/commands/mr/delete.ts](https://github.com/younesshakky/xlab-cli/blob/v1.0.1-alpha/src/commands/mr/delete.ts)_
 
 ## `xlab-cli mr:list`
 
@@ -117,7 +117,7 @@ OPTIONS
   -s, --state=state  [default: open]
 ```
 
-_See code: [src/commands/mr/list.ts](https://github.com/younesshakky/xlab-cli/blob/v1.0.0-alpha/src/commands/mr/list.ts)_
+_See code: [src/commands/mr/list.ts](https://github.com/younesshakky/xlab-cli/blob/v1.0.1-alpha/src/commands/mr/list.ts)_
 
 ## `xlab-cli mr:open`
 
@@ -137,7 +137,7 @@ OPTIONS
   -w, --assign                   list assignees
 ```
 
-_See code: [src/commands/mr/open.ts](https://github.com/younesshakky/xlab-cli/blob/v1.0.0-alpha/src/commands/mr/open.ts)_
+_See code: [src/commands/mr/open.ts](https://github.com/younesshakky/xlab-cli/blob/v1.0.1-alpha/src/commands/mr/open.ts)_
 
 ## `xlab-cli mr:state ID STATE`
 
@@ -153,5 +153,5 @@ OPTIONS
   -h, --help  show CLI help
 ```
 
-_See code: [src/commands/mr/state.ts](https://github.com/younesshakky/xlab-cli/blob/v1.0.0-alpha/src/commands/mr/state.ts)_
+_See code: [src/commands/mr/state.ts](https://github.com/younesshakky/xlab-cli/blob/v1.0.1-alpha/src/commands/mr/state.ts)_
 <!-- commandsstop -->
