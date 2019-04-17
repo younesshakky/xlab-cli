@@ -1,8 +1,6 @@
-xlab-cli
-==========
+# xlab-cli
 
 Just a tiny command line interface for gitlab API
-
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 [![Version](https://img.shields.io/npm/v/xlab-cli.svg)](https://npmjs.org/package/xlab-cli)
@@ -10,11 +8,16 @@ Just a tiny command line interface for gitlab API
 [![License](https://img.shields.io/npm/l/xlab-cli.svg)](https://github.com/younesshakky/xlab-cli/blob/master/package.json)
 
 <!-- toc -->
-* [Usage](#usage)
-* [Commands](#commands)
-<!-- tocstop -->
+
+- [Usage](#usage)
+- [Commands](#commands)
+- [Roadmap](#roadmap)
+  <!-- tocstop -->
+
 # Usage
+
 <!-- usage -->
+
 ```sh-session
 $ npm install -g xlab-cli
 $ xlab-cli COMMAND
@@ -26,16 +29,20 @@ USAGE
   $ xlab-cli COMMAND
 ...
 ```
+
 <!-- usagestop -->
+
 # Commands
+
 <!-- commands -->
-* [`xlab-cli autocomplete [SHELL]`](#xlab-cli-autocomplete-shell)
-* [`xlab-cli configure`](#xlab-cli-configure)
-* [`xlab-cli help [COMMAND]`](#xlab-cli-help-command)
-* [`xlab-cli mr:delete ID`](#xlab-cli-mrdelete-id)
-* [`xlab-cli mr:list`](#xlab-cli-mrlist)
-* [`xlab-cli mr:open`](#xlab-cli-mropen)
-* [`xlab-cli mr:state ID STATE`](#xlab-cli-mrstate-id-state)
+
+- [`xlab-cli autocomplete [SHELL]`](#xlab-cli-autocomplete-shell)
+- [`xlab-cli configure`](#xlab-cli-configure)
+- [`xlab-cli help [COMMAND]`](#xlab-cli-help-command)
+- [`xlab-cli mr:delete ID`](#xlab-cli-mrdelete-id)
+- [`xlab-cli mr:list`](#xlab-cli-mrlist)
+- [`xlab-cli mr:open`](#xlab-cli-mropen)
+- [`xlab-cli mr:state ID STATE`](#xlab-cli-mrstate-id-state)
 
 ## `xlab-cli autocomplete [SHELL]`
 
@@ -154,4 +161,12 @@ OPTIONS
 ```
 
 _See code: [src/commands/mr/state.ts](https://github.com/younesshakky/xlab-cli/blob/v1.0.1-alpha/src/commands/mr/state.ts)_
+
 <!-- commandsstop -->
+
+# Roadmap
+
+- [ ] choose merge request to delete interactively
+- [ ] choose multiple request to delete
+- [ ] user can merge request (interactively)
+- [ ] configurable default target branch
